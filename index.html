@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bir soru var... 💖</title>
+  <style>
+    :root{--bg:#0f1724;--accent:#ff577f;--accent2:#ffd166;--card:#0b1220aa;--glass: rgba(255,255,255,0.06);--font-sans: 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:var(--font-sans);background: radial-gradient(1200px 600px at 10% 10%, #081229 0%, var(--bg) 25%, #06101a 60%), linear-gradient(180deg, rgba(255,255,255,0.02), transparent);color:#eaf2ff;overflow:hidden;}
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;position:relative;}
+    .card{width:min(880px,96vw);background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:18px;padding:36px;box-shadow:0 8px 30px rgba(2,6,23,0.6);position:relative;overflow:hidden;z-index:1}
+    header{display:flex;gap:16px;align-items:center}
+    .logo{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:30px;box-shadow:0 6px 20px rgba(255,87,127,0.18)}
+    h1{margin:0;font-size:24px}
+    p.lead{color:rgba(234,242,255,0.8);margin-top:8px}
+    .hero{display:grid;grid-template-columns:1fr 300px;gap:24px;margin-top:18px;align-items:center;position:relative}
+    .left{padding:18px;z-index:2}
+    .right{display:flex;flex-direction:column;gap:12px;align-items:center;position:relative;z-index:2}
+    .message-box{background:var(--glass);padding:22px;border-radius:14px;backdrop-filter: blur(6px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
+    .surprise{font-size:20px;margin:0 0 12px 0}
+    .small{font-size:14px;color:rgba(234,242,255,0.75)}
+    .button{appearance:none;border:0;cursor:pointer;padding:12px 18px;border-radius:12px;font-weight:700}
+    .btn-reveal{background:linear-gradient(90deg,var(--accent),#ff7aa2);color:white;box-shadow:0 8px 24px rgba(255,87,127,0.18);transform:translateY(0);transition:transform .18s}
+    .btn-reveal:active{transform:translateY(2px)}
+    .btn-yes{background:linear-gradient(90deg,#5eead4,#06b6d4);color:#012;min-width:120px}
+    .btn-no{background:transparent;border:2px solid rgba(255,255,255,0.06);color:rgba(234,242,255,0.9)}
+    .heart{width:120px;height:120px;display:flex;align-items:center;justify-content:center}
+    .heart svg{filter:drop-shadow(0 8px 18px rgba(255,87,127,0.16));}
+    .hidden{display:none}
+    .center{display:flex;align-items:center;justify-content:center}
+    footer{margin-top:18px;font-size:13px;color:rgba(234,242,255,0.6)}
+    @media (max-width:760px){.hero{grid-template-columns:1fr;}.right{order:-1}.logo{width:56px;height:56px}}
+    .pulse{animation:pulse 1.6s infinite}@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+    .floating-heart{position:fixed;pointer-events:none;z-index:9998;will-change:transform,opacity;transition: transform 0.8s cubic-bezier(0.4,0,0.2,1), opacity 0.8s linear;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="logo">💌</div>
+        <div>
+          <h1>Bir soru var... <small style="font-weight:400;opacity:0.8">(sayfayı düzenlemek için HTML içinde TARGET_NAME ve YOUR_NAME alanlarını değiştirin)</small></h1>
+          <p class="lead">Küçük ve samimi bir çıkma teklifi sayfası — butona tıklayın, sürpriz açılsın.</p>
+        </div>
+      </header>
+      <section class="hero">
+        <div class="left">
+          <div class="message-box" id="messageBox">
+            <p class="surprise" id="greeting">Merhaba! 🥰</p>
+            <p class="small" id="intro">Bu sayfa bir soru sormak için hazırlandı. Her şey önceden düzenlenebilir: isimler, mesaj ve görseller.</p>
+            <div style="height:8px"></div>
+            <div class="center">
+              <button class="button btn-reveal" id="revealBtn">Sürprizi Göster</button>
+            </div>
+            <div id="afterReveal" class="hidden">
+              <hr style="margin:18px 0;border:none;border-top:1px solid rgba(255,255,255,0.04)">
+              <p style="font-size:18px;margin:0 0 12px 0">💬 <span id="questionText">Beni çıkar mısın?</span></p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+                <button class="button btn-yes" id="yesBtn">Evet! ❤️</button>
+                <button class="button btn-no" id="noBtn">Üzgünüm, hayır</button>
+              </div>
+            </div>
+          </div>
+          <footer>İpucu: HTML dosyasını Notepad veya VS Code ile açıp TARGET_NAME ve YOUR_NAME değişkenlerini düzenleyebilirsiniz.</footer>
+        </div>
+        <div class="right center">
+          <div class="heart pulse" id="heartWrap" title="Kalp">
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21s-7.5-4.5-9.5-8a5.5 5.5 0 0 1 9-6c0 0 1.5-2 4.5 0 3 2 3 6 0 10C13.5 18 12 21 12 21z" fill="url(#g)"/>
+              <defs>
+                <linearGradient id="g" x1="0" x2="1">
+                  <stop offset="0" stop-color="#ff7aa2" />
+                  <stop offset="1" stop-color="#ffb085" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div style="text-align:center;color:rgba(234,242,255,0.8)">
+            <div id="toName" style="font-weight:700;font-size:18px">TARGET_NAME</div>
+            <div style="font-size:13px;margin-top:6px;color:rgba(234,242,255,0.6)">- <span id="fromName">YOUR_NAME</span> tarafından</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script>
+    const TARGET_NAME = 'Sevgili';
+    const YOUR_NAME = 'Sen';
+    const QUESTION = 'Benimle çıkar mısın?';
+    const toNameEl = document.getElementById('toName');
+    const fromNameEl = document.getElementById('fromName');
+    const questionTextEl = document.getElementById('questionText');
+    const revealBtn = document.getElementById('revealBtn');
+    const afterReveal = document.getElementById('afterReveal');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const greeting = document.getElementById('greeting');
+
+    toNameEl.textContent = TARGET_NAME;
+    fromNameEl.textContent = YOUR_NAME;
+    questionTextEl.textContent = QUESTION;
+    greeting.textContent = `Merhaba ${TARGET_NAME}! 🥰`;
+
+    function playChime(){try{const ctx=new (window.AudioContext||window.webkitAudioContext)();const o=ctx.createOscillator();const g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(440,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(660,ctx.currentTime+0.22);g.gain.setValueAtTime(0.001,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.12,ctx.currentTime+0.02);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.5);o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+0.6);}catch(e){console.warn('Ses desteklenmiyor',e)}}
+
+    revealBtn.addEventListener('click', ()=>{
+      afterReveal.classList.remove('hidden');
+      revealBtn.disabled=true;
+      revealBtn.textContent='Açıldı';
+      playChime();
+      const heart = document.getElementById('heartWrap');
+      heart.classList.add('pulse');
+      setTimeout(()=>heart.classList.remove('pulse'),2200);
+    });
+
+    yesBtn.addEventListener('click', ()=>{
+      playChime();
+      heartRain2Sec();
+      yesBtn.textContent='❤️ Harika!';
+      yesBtn.disabled=true;
+      noBtn.disabled=true;
+      greeting.textContent=`Süper! ${TARGET_NAME} ile birlikte...`;
+      setTimeout(()=>{greeting.textContent=`Mutlu olmanız dileğiyle! 🎉`;},2000);
+    });
+
+    noBtn.addEventListener('click', ()=>{
+      noBtn.textContent='Tamam...';
+      yesBtn.disabled=true;
+      noBtn.disabled=true;
+      greeting.textContent=`Teşekkür ederim dürüst olduğun için, saygı duyuyorum.`;
+    });
+
+    function createHearts(count=60){
+      for(let i=0;i<count;i++){
+        const heart=document.createElement('div');
+        heart.className='floating-heart';
+        heart.textContent='❤️';
+        const size=18+Math.random()*28;
+        heart.style.fontSize=size+'px';
+        heart.style.left=Math.random()*100+'vw';
+        heart.style.top='-10vh';
+        heart.style.opacity='1';
+        let rot=Math.random()*360;
+        const speed = 1.0 + Math.random()*0.5; // biraz daha yavaş, 0.2 saniye artırıldı
+        heart.style.transition = `transform ${speed}s cubic-bezier(0.4,0,0.2,1), opacity ${speed}s linear`;
+        document.body.appendChild(heart);
+        setTimeout(()=>{
+          let animInterval=setInterval(()=>{
+            rot+=Math.random()*3-1.5;
+            heart.style.transform=`translateY(100vh) rotate(${rot}deg)`;
+          },20);
+          setTimeout(()=>{clearInterval(animInterval); heart.remove()},speed*1000);
+        },0);
+      }
+    }
+
+    function heartRain2Sec(){
+      const interval=setInterval(()=>createHearts(60),100);
+      setTimeout(()=>clearInterval(interval),2000);
+    }
+
+  </script>
+</body>
+</html>
