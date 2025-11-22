@@ -42,29 +42,28 @@
         <div class="logo">💌</div>
         <div>
           <h1>Bir soru var... <small style="font-weight:400;opacity:0.8"></small></h1>
-          <p class="lead">prensesimm — butona tıklayın</p>
+          <p class="lead">prensesimm — butona tıklayın.</p>
         </div>
       </header>
       <section class="hero">
         <div class="left">
           <div class="message-box" id="messageBox">
             <p class="surprise" id="greeting">Merhaba! 🥰</p>
-            <p class="small" id="intro"></p>
+            <p class="small" id="</p>
             <div style="height:8px"></div>
             <div class="center">
               <button class="button btn-reveal" id="revealBtn">Göster</button>
             </div>
             <div id="afterReveal" class="hidden">
               <hr style="margin:18px 0;border:none;border-top:1px solid rgba(255,255,255,0.04)">
-              <p style="font-size:18px;margin:0 0 12px 0">💬 <span id="questionText">Benim prensesim olurmusın?</span></p>
+              <p style="font-size:18px;margin:0 0 12px 0">💬 <span id="questionText">Benim prensesim olurmusun?</span></p>
               <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
                 <button class="button btn-yes" id="yesBtn">Evet! ❤️</button>
                 <button class="button btn-no" id="noBtn">Üzgünüm, hayır</button>
               </div>
             </div>
           </div>
-          <footer></footer>
-        </div>
+                </div>
         <div class="right center">
           <div class="heart pulse" id="heartWrap" title="Kalp">
             <svg width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,8 +77,8 @@
             </svg>
           </div>
           <div style="text-align:center;color:rgba(234,242,255,0.8)">
-            <div id="toName" style="font-weight:700;font-size:18px">TARGET_NAME</div>
-            <div style="font-size:13px;margin-top:6px;color:rgba(234,242,255,0.6)">- <span id="fromName">YOUR_NAME</span> tarafından</div>
+            <div id="toName" style="font-weight:700;font-size:18px">Zeynep<div>
+            <div style="font-size:13px;margin-top:6px;color:rgba(234,242,255,0.6)">- <span id="fromName">Ege</span> tarafından</div>
           </div>
         </div>
       </section>
@@ -87,8 +86,8 @@
   </div>
   <script>
     const TARGET_NAME = 'Zeynep';
-    const YOUR_NAME = 'Ben';
-    const QUESTION = 'Benim Prensesim Olurmusun?';
+    const YOUR_NAME = 'Ege';
+    const QUESTION = 'Benim prensesim olurlmusun?';
     const toNameEl = document.getElementById('toName');
     const fromNameEl = document.getElementById('fromName');
     const questionTextEl = document.getElementById('questionText');
@@ -118,18 +117,18 @@
     yesBtn.addEventListener('click', ()=>{
       playChime();
       heartRain2Sec();
-      yesBtn.textContent='❤️❤️❤️❤️❤️❤️';
+      yesBtn.textContent='❤️ Harika!';
       yesBtn.disabled=true;
       noBtn.disabled=true;
       greeting.textContent=`Süper! ${TARGET_NAME} ile birlikte...`;
-      setTimeout(()=>{greeting.textContent=`Ankaraya Gelmem Dileğiyle 🎉`;},2000);
+      setTimeout(()=>{greeting.textContent=`Ankaraya gelmem dileğiyle! 🎉`;},2000);
     });
 
     noBtn.addEventListener('click', ()=>{
       noBtn.textContent='Tamam...';
       yesBtn.disabled=true;
       noBtn.disabled=true;
-      greeting.textContent='`;
+      greeting.textContent=``;
     });
 
     function createHearts(count=60){
@@ -164,5 +163,3 @@
   </script>
 </body>
 </html>
-
-
